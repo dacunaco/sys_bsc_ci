@@ -20,36 +20,6 @@
     <!-- Main content -->
     <div class="wrapper">
         <div class="cnt" style="padding-top: 15px;">
-            <table width="100%" cellspacing="0" cellpadding="10" border="0" style="border-collapse: collapse; border: 1px solid #000;">
-            <?php
-                if(isset($mensaje)){
-                    if($opcion == 1){?>
-                        <tr>
-                            <td width="90%" colspan="2" style="border: 1px solid #000;padding: 10px;">
-                                <div class="message" style="border: 1px solid #006600;background: #99ff99; color: #006600; width: 98%;margin: 0 auto;padding: 5px;margin-top: 5px;">
-                                    <?= $mensaje?>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php }else if($opcion == 0){?>
-                            <tr>
-                                <td width="90%" colspan="2" style="border: 1px solid #000;padding: 10px;">
-                                    <div class="message" style="border: 1px solid #990000;background:  #ff9999; color: #990000; width: 98%;margin: 0 auto;padding: 5px;margin-top: 5px;">
-                                        <?= $mensaje?>
-                                    </div>
-                                </td>
-                            </tr>
-                    <?php }
-                }else{ if(validation_errors() != ""){?>
-                        <tr>
-                            <td width="90%" colspan="2" style="border: 1px solid #000;padding: 10px;">
-                                <div class="message" style="border: 1px solid #990000;background:  #ff9999; color: #990000; width: 98%;margin: 0 auto;padding: 5px;margin-top: 5px;">
-                                    <?= validation_errors()?>
-                                </div>
-                            </td>
-                        </tr>
-                <?php }}
-            ?>
             <?= form_open(base_url().'admin/addDetailMatriz');?>
             <tr>
                 <td width="50%" align="center" style="border: 1px solid #000;padding: 10px;">
@@ -59,7 +29,7 @@
                         foreach ($entorno as $row){
                             $entornos[$row->identorno] = $row->entorno;
                         }
-                        echo form_label('Entorno : ');
+                        ?><label style="margin-left: 15px;">Entorno : </label><?php
                         echo form_dropdown('entornos', $entornos,'','style="width: 170px;" required="required"');
                     ?>
                 </td>
@@ -70,8 +40,8 @@
                         foreach ($tendencia as $row){
                             $tendencias[$row->idtendencia] = $row->tendencia;
                         }
-                        echo form_label('Tendencia : ');
-                        echo form_dropdown('tendencias', $tendencias,'','style="width: 170px;"');
+                        ?><label style="margin-left: 15px;">Tendencia : </label><?php
+                        echo form_dropdown('tendencias', $tendencias,'','style="width: 170px;" required="required"');
                     ?>
                 </td>
             </tr>
@@ -79,7 +49,7 @@
                 <td colspan="2" align="center" style="border: 1px solid #000;padding: 10px;">
                     <div class="formRow" >
                         <div class="grid3"><?= form_label('Detalle : ');?></div>
-                        <div class="grid9"><?= form_input('detalle');?></div>
+                        <div class="grid9"><?= form_input('detalle','','required="required"');?></div>
                     </div>
                     <div class="formRow" >
                                     <div class="grid9"><input type="submit" class="buttonS bGreen" value="Agregar Detalle"/></div>
@@ -88,6 +58,7 @@
                 </td>
             </tr>
             <?= form_close();?>
+            <table width="100%" cellspacing="0" cellpadding="10" border="0" style="border-collapse: collapse; border: 1px solid #000;">
             <tr>
                 <td colspan="2" align="center" style="border: 1px solid #000;padding: 10px;">
                     <table width="100%" cellspacing="0" cellpadding="10" border="2" align="center" >
